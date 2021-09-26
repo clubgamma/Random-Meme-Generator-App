@@ -1,0 +1,2 @@
+rootProject.name = "Random Meme Generator"
+include ':app'
