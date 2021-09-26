@@ -214,7 +214,7 @@ Then, Gradle will do everything for you.
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
+See [CONTRIBUTING.md](https://github.com/clubgamma/code-of-conduct) for ways to get started.
 
 Please adhere to this project's [Code of Conduct](https://github.com/clubgamma/code-of-conduct).
 
