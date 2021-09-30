@@ -231,7 +231,7 @@ Please adhere to this project's [Code of Conduct](https://github.com/clubgamma/c
 
 **To know more about us, visit [official website](https://clubgamma.github.io/) of Club Gamma.**
 
-**To know more about how Club Gamma is going to celebrate Hacktoberfest, click [here](https://clubgamma.github.io/hacktoberfest/)**
+**To know more about how Club Gamma is going to celebrate Hacktoberfest, click [here](https://clubgamma.github.io/hacktoberfest2021/)**
 
 <br>
 <div align="center">  
