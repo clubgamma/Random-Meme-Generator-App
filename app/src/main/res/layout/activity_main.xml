@@ -4,15 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/defaultmeme"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.407"
+        app:layout_constraintWidth_percent="1.00" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_height="130dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:layout_marginTop="131dp"
+        app:layout_constraintHeight_percent="0.13">
+
+        <Button
+            android:id="@+id/share"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="@string/share"
+            android:textSize="24sp"
+            android:textColor="#0000ff"
+            app:backgroundTint="#4da6ff"
+
+            app:cornerRadius="0dp"
+            app:layout_constraintHeight_percent="0.13"
+            />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="@string/next"
+            android:textColor="#ffff00"
+            android:textSize="24sp"
+            app:backgroundTint="#663300"
+
+            app:cornerRadius="0dp"
+            app:layout_constraintHeight_percent="0.13"
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
