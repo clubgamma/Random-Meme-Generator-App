@@ -16,8 +16,29 @@ import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import io.github.clubgamma.randommemegenerator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding activityMainBinding;
+    String url = "https://meme-api.herokuapp.com/gimme";
+    RequestQueue queue;
 
     // Declaring statements for the share functionality
     BitmapDrawable drawable;
@@ -28,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
+        getMemeImage();
 
         // Define ShareButton and image object here
         shareBtn = findViewById(R.id.share);
@@ -75,5 +98,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         startActivity(Intent.createChooser(shareIntent, "Share using "));
+        activityMainBinding.next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMemeImage();
+            }
+        });
+    }
+
+    public void getMemeImage() {
+        queue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String memeUrl = null;
+                try {
+                    memeUrl = response.getString("url");
+                    loadImageIntoImageView(memeUrl);
+                } catch (JSONException jsonException) {
+                    jsonException.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
+
+    public void loadImageIntoImageView(String url) {
+        Glide.with(MainActivity.this).load(url).into(activityMainBinding.imageView);
     }
 }
