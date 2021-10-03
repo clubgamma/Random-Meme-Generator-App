@@ -107,10 +107,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getMemeImage() {
+        
+        ProgressBar progressBar= findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
         queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                progressBar.setVisibility(View.GONE);
                 String memeUrl = null;
                 try {
                     memeUrl = response.getString("url");
@@ -122,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
                 error.printStackTrace();
             }
         });
