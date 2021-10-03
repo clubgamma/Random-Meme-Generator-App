@@ -15,6 +15,15 @@
         android:layout_above="@id/LinearLayout02"
         android:src="@drawable/defaultmeme"
         android:contentDescription="@string/meme" />
+    
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/imageView"
+        app:layout_constraintRight_toRightOf="@id/imageView"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/imageView"/>
 
     <LinearLayout
         android:id="@+id/LinearLayout02"
