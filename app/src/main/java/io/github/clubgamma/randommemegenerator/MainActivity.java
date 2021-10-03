@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     Bitmap bitmap;
     ImageView img;
     Button shareBtn;
+    Button nextMeme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         // Define ShareButton and image object here
         shareBtn = findViewById(R.id.share);
         img = findViewById(R.id.imageView);
+        nextMeme = findViewById(R.id.next);
 
         // Define ActionBar object
         ActionBar actionBar;
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         ((ActionBar) actionBar).setBackgroundDrawable(colorDrawable);
 
         shareBtn.setOnClickListener(v -> shareImage());
+        nextMeme.setOnClickListener(v -> getMemeImage());
+
     }
 
     // Method responsible for getting image from the imageView and sharing it.
