@@ -17,10 +17,15 @@ watch random memes and share memes with others.
   
 ## Tech Stack
 
-- Java
-- XML
-- Third party libraries such as Retrofit and Glide are allowed.
+- Programming Languages used -
 
+<img src="https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png" height="70px" width="100px"> 
+<img src= "https://user-images.githubusercontent.com/72314518/135832867-340ec894-bc82-422a-8ae3-2fd08790f089.jpeg" height="70px", width="100px"> 
+
+- Third party libraries used -
+
+<img src="https://user-images.githubusercontent.com/72314518/135833114-a721130c-cd6d-4e40-9ff0-096ee7b31fe2.png" height="70px" width="120px"> 
+<img src= "https://user-images.githubusercontent.com/72314518/135833646-7201cfb0-4c4f-4707-8016-bdec1c25655c.png" height="90px", width="100px"> 
   
 ## API Reference
 
