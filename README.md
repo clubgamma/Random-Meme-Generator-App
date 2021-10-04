@@ -4,6 +4,9 @@
 We all love watching and sharing memes using this app user can 
 watch random memes and share memes with others.
 
+<div align = "center">
+<img src = "https://c.tenor.com/sL_CTFI38L8AAAAM/dance-seinfeld.gif">
+</div>
 
 ## Features
 
@@ -234,12 +237,18 @@ Please adhere to this project's [Code of Conduct](https://github.com/clubgamma/c
 **To know more about how Club Gamma is going to celebrate Hacktoberfest, click [here](https://clubgamma.github.io/hacktoberfest2021/)**
 
 <br>
+
+<div align = "center">
+<img src = "https://c.tenor.com/iBFCLOOUxn8AAAAC/phoebe-buffay-friends.gif">
+</div>
+
+
 <div align="center">  
 <i>If you want to add any feature or if you found a bug, feel free to open an issue</i><br><br>
 
 ![](https://img.shields.io/badge/Star-If_Liked-%23FF0000.svg?&style=flat&logoColor=white&color=white)
 ![](https://img.shields.io/badge/Fork-If_you_found_interesting-%23FF0000.svg?&style=flat&logoColor=white&color=white)<br>
-<a href="https://github.com/clubgamma/spotify-web-clone/issues/new"><img src="https://img.shields.io/badge/Query-Ask_Us_Anything-blue"/></a><br>
+<a ><img src="https://img.shields.io/badge/Query-Ask_Us_Anything-blue"/></a><br>
 <br>
 
 </div>
