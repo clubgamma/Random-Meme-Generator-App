@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="io.github.clubgamma.randommemegenerator">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,12 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RandomMemeGenerator">
         <activity
+            android:name=".StartActivity"
+            android:exported="true"
+            tools:ignore="MissingClass" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="Meme Page"
             android:parentActivityName=".StartActivity"
-            />
-        <activity android:name=".StartActivity">
+            tools:ignore="MissingClass" />
+        <activity android:name=".SplashActivity"
+            tools:ignore="MissingClass">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
