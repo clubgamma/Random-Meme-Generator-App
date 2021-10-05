@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
+        getSupportActionBar().hide();
         getMemeImage();
 
         // Define ShareButton and image object here
@@ -74,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
         shareBtn.setOnClickListener(v -> shareImage());
         nextMeme.setOnClickListener(v -> getMemeImage());
+
+        activityMainBinding.back.setOnClickListener(v -> {
+            onBackPressed();
+        });
 
     }
 

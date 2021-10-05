@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:background="@color/bg_color"
     tools:context=".MainActivity">
 
     <ImageView
@@ -13,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/LinearLayout02"
-        android:src="@drawable/defaultmeme"
-        android:contentDescription="@string/meme" />
+        android:layout_marginBottom="7dp"
+        android:contentDescription="@string/meme"
+        android:src="@drawable/defaultmeme" />
 
     <LinearLayout
         android:id="@+id/LinearLayout02"
@@ -22,28 +24,53 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/share"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/share"
-            android:textColor="#0000ff"
-            android:textSize="24sp"
-            app:backgroundTint="#4da6ff"
-            app:cornerRadius="0dp" />
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="#77D970"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_share"
+            app:iconTint="@color/white" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/next"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/next"
-            android:textColor="#ffff00"
-            android:textSize="24sp"
-            app:backgroundTint="#663300"
-            app:cornerRadius="0dp" />
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="#3D56B2"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_next"
+            app:iconTint="@color/white" />
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:tooltipText="Back"
+        app:backgroundTint="@color/card_bg"
+        app:srcCompat="@drawable/ic_back"
+        app:tint="@color/text_color"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </RelativeLayout>

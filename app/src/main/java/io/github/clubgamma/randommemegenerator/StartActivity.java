@@ -12,6 +12,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        getSupportActionBar().hide();
     }
     public void openActivity(android.view.View v){
         Toast.makeText(this, "Opening Meme Page. Enjoy!!", Toast.LENGTH_SHORT).show();

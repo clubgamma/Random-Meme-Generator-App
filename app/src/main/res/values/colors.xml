@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bg_color">#ffffff</color>
+    <color name="card_bg">#E6E6E6</color>
+    <color name="text_color">#1C1C1C</color>
+    <color name="text_color_light">#999999</color>
+    <color name="fab_bg">#999999</color>
+    <color name="border_stroke">#999999</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#999999</color>
 </resources>
