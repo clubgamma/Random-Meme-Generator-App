@@ -37,6 +37,7 @@ import io.github.clubgamma.randommemegenerator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
+    String memeUrl = null;
     String url = "https://meme-api.herokuapp.com/gimme";
     RequestQueue queue;
 
@@ -99,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
             outputStream.close();
 
             shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("image/*");
-            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, memeUrl);
             shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -120,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String memeUrl = null;
                 try {
                     memeUrl = response.getString("url");
                     loadImageIntoImageView(memeUrl);
