@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,6 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue queue;
 
     // Declaring statements for the share functionality
+    private ProgressBar proBar;
     BitmapDrawable drawable;
     Bitmap bitmap;
     ImageView img;
@@ -133,6 +136,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadImageIntoImageView(String url) {
-        Glide.with(MainActivity.this).load(url).into(activityMainBinding.imageView);
+         proBar = findViewById(R.id.progress_bar);
+        proBar.setVisibility(View.VISIBLE);
+
+        Glide.with(MainActivity.this).load(url).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                proBar.setVisibility(View.INVISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                proBar.setVisibility(View.INVISIBLE);
+                return false;
+            }
+        }).into(activityMainBinding.imageView);
     }
 }
