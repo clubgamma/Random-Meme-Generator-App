@@ -6,6 +6,12 @@ watch random memes and share memes with others.
 
 <div align = "center">
 <img src = "https://c.tenor.com/sL_CTFI38L8AAAAM/dance-seinfeld.gif">
+  
+</div>
+
+<div align = "center">
+<img src = "https://meme-api-python.herokuapp.com/static/img/bg.gif">
+  
 </div>
 
 You can download the app from this [link!](https://drive.google.com/file/d/1NtZ_L85Pgb6DDt38BASEwR7LooygWWTi/view?usp=sharing)
