@@ -17,7 +17,12 @@
         android:layout_marginBottom="7dp"
         android:contentDescription="@string/meme"
         android:src="@drawable/defaultmeme" />
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
     <LinearLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="match_parent"

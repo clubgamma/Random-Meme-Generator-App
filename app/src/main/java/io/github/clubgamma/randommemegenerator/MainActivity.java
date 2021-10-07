@@ -1,5 +1,6 @@
 package io.github.clubgamma.randommemegenerator;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +9,13 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.ImageView;
-
+import android.widget.ProgressBar;
 import java.io.File;
 import java.io.FileOutputStream;
 import android.util.Log;
@@ -21,6 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +34,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img;
     Button shareBtn;
     Button nextMeme;
+    ProgressBar proBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +145,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadImageIntoImageView(String url) {
-        Glide.with(MainActivity.this).load(url).into(activityMainBinding.imageView);
+        proBar = findViewById(R.id.progress_bar);
+        proBar.setVisibility(View.VISIBLE);
+
+        Glide.with(MainActivity.this).load(url).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                proBar.setVisibility(View.INVISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                proBar.setVisibility(View.INVISIBLE);
+                return false;
+            }
+        }).into(activityMainBinding.imageView);
     }
 }
