@@ -1,23 +1,37 @@
 package io.github.clubgamma.randommemegenerator;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.DownloadManager;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +49,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,9 +58,10 @@ import io.github.clubgamma.randommemegenerator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
-    String memeUrl = null;
+    String memeUrl = null,memeTitle=null;
     String url = "https://meme-api.herokuapp.com/gimme";
     RequestQueue queue;
+    public static final int PERMISSION_WRITE = 0;
 
     // Declaring statements for the share functionality
     BitmapDrawable drawable;
@@ -54,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
     Button shareBtn;
     Button nextMeme;
     ProgressBar proBar;
+    FloatingActionButton downloadBtn;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         shareBtn = findViewById(R.id.share);
         img = findViewById(R.id.imageView);
         nextMeme = findViewById(R.id.next);
+        downloadBtn = findViewById(R.id.downloadBtn);
+        progressDialog = new ProgressDialog(this);
 
         // Define ActionBar object
         ActionBar actionBar;
@@ -83,10 +103,19 @@ public class MainActivity extends AppCompatActivity {
 
         shareBtn.setOnClickListener(v -> shareImage());
         nextMeme.setOnClickListener(v -> getMemeImage());
+        downloadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkPermission()){
+                    new Downloading().execute(memeUrl);
+                }
+            }
+        });
 
         activityMainBinding.back.setOnClickListener(v -> {
             onBackPressed();
         });
+
 
     }
 
@@ -130,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     memeUrl = response.getString("url");
+                    memeTitle = response.getString("title");
                     loadImageIntoImageView(memeUrl);
                 } catch (JSONException jsonException) {
                     jsonException.printStackTrace();
@@ -161,5 +191,61 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         }).into(activityMainBinding.imageView);
+    }
+    //runtime storage permission
+    public boolean checkPermission() {
+        int READ_EXTERNAL_PERMISSION = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if((READ_EXTERNAL_PERMISSION != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_WRITE);
+            return false;
+        }
+        return true;
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode==PERMISSION_WRITE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //After click on accept download image
+            Toast.makeText(this, "Permission Accepted", Toast.LENGTH_SHORT).show();
+            new Downloading().execute(memeUrl);
+        }
+    }
+
+
+    public class Downloading extends AsyncTask<String, Integer, String> {
+
+        @Override
+        public void onPreExecute() {
+            super .onPreExecute();
+            //show progressDialog untill image download
+            progressDialog.setMessage("Please wait");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        protected String doInBackground(String... url) {
+            //create DownloadManager instances
+            DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            Uri downloadUri = Uri.parse(url[0]);
+            //create request from DownloadManager for download
+            DownloadManager.Request request = new DownloadManager.Request(downloadUri);
+                //set request for downloading
+                request.setAllowedNetworkTypes(
+                        DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
+                        .setAllowedOverRoaming(false)
+                        .setTitle("Downloading")
+                        .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, memeTitle + ".jpg");
+         manager.enqueue(request);
+            return Environment.DIRECTORY_PICTURES + memeTitle + ".jpg";
+        }
+
+        @Override
+        public void onPostExecute(String s) {
+            super .onPostExecute(s);
+            progressDialog.dismiss();
+            Toast.makeText(getApplicationContext(), "Image Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }
