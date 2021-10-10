@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible" />
+
     <LinearLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="match_parent"
@@ -50,6 +51,28 @@
             app:icon="@drawable/ic_share"
             app:iconTint="@color/white" />
 
+        <com.jackandphantom.androidlikebutton.AndroidLikeButton
+            android:id="@+id/likebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            app:like_icon="@drawable/like"
+            app:unlike_icon="@drawable/unlike"
+            app:circle_startColor="#E21717"
+            app:circle_endColor="#E21717"
+
+            app:liked="false"
+
+            app:dot_active="true"
+            app:dot_color_1="#E21717"
+            app:dot_color_2="#E21717">
+
+        </com.jackandphantom.androidlikebutton.AndroidLikeButton>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next"
             android:layout_width="match_parent"
@@ -66,6 +89,8 @@
             app:cornerRadius="15dp"
             app:icon="@drawable/ic_next"
             app:iconTint="@color/white" />
+
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

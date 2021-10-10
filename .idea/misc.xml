@@ -15,6 +15,10 @@
         <entry key="..\:/Users/LENOVO/Desktop/AndroidDev/Random-Meme-Generator-App/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/LENOVO/Desktop/AndroidDev/Random-Meme-Generator-App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/LENOVO/Desktop/AndroidDev/Random-Meme-Generator-App/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/activity_start.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/check_internet_connection.xml" value="0.1503623188405797" />
       </map>
     </option>
   </component>

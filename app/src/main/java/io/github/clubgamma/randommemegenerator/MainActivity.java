@@ -50,6 +50,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jackandphantom.androidlikebutton.AndroidLikeButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,11 +58,15 @@ import org.json.JSONObject;
 import io.github.clubgamma.randommemegenerator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+
     ActivityMainBinding activityMainBinding;
     String memeUrl = null,memeTitle=null;
     String url = "https://meme-api.herokuapp.com/gimme";
     RequestQueue queue;
     public static final int PERMISSION_WRITE = 0;
+
+    AndroidLikeButton likeButton;
 
     // Declaring statements for the share functionality
     BitmapDrawable drawable;
@@ -78,8 +83,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
+
         getSupportActionBar().hide();
         getMemeImage();
+
+
+
+        likeButton = findViewById(R.id.likebtn);
+//        likeButton.setCurrentlyLiked(boolean liked);
+
+        likeButton.setOnLikeEventListener(new AndroidLikeButton.OnLikeEventListener() {
+            @Override
+            public void onLikeClicked(AndroidLikeButton androidLikeButton) {
+                Toast.makeText(MainActivity.this, "Liked", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnlikeClicked(AndroidLikeButton androidLikeButton) {
+                Toast.makeText(MainActivity.this, "Unliked", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
         // Define ShareButton and image object here
         shareBtn = findViewById(R.id.share);
@@ -148,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getMemeImage();
+
             }
         });
     }
