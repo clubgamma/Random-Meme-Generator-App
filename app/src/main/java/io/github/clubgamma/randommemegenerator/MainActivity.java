@@ -12,12 +12,15 @@ import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.PeriodicSync;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -37,6 +40,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.TransitionOptions;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
@@ -50,6 +54,8 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     String url = "https://meme-api.herokuapp.com/gimme";
     RequestQueue queue;
     public static final int PERMISSION_WRITE = 0;
+
 
     // Declaring statements for the share functionality
     BitmapDrawable drawable;
@@ -92,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar;
         actionBar = getSupportActionBar();
 
+        if(!checkInternetPermission()){
+            Toast.makeText(this, R.string.On_internet, Toast.LENGTH_SHORT).show();
+        }
         // Define ColorDrawable object and parse color
         // using parseColor method
         // with color hash code as its parameter
@@ -106,8 +116,12 @@ public class MainActivity extends AppCompatActivity {
         downloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkPermission()){
-                    new Downloading().execute(memeUrl);
+                if(checkPermission() ){
+                    if(checkInternetPermission()){
+                        new Downloading().execute(memeUrl);
+                    }else {
+                        Toast.makeText(MainActivity.this, R.string.On_internet, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -121,57 +135,72 @@ public class MainActivity extends AppCompatActivity {
 
     // Method responsible for getting image from the imageView and sharing it.
     private void shareImage() {
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
+//        if(checkInternetPermission()) {
 
-        drawable = (BitmapDrawable) img.getDrawable();
-        bitmap = drawable.getBitmap();
-        File file = new File(getExternalCacheDir()+"/"+"meme"+".png");
-        Intent shareIntent;
-        
-        try {
-            FileOutputStream outputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-            outputStream.flush();
-            outputStream.close();
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
 
-            shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, memeUrl);
-            shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            drawable = (BitmapDrawable) img.getDrawable();
+            bitmap = drawable.getBitmap();
+            File file = new File(getExternalCacheDir()+"/"+"meme"+".png");
+            Intent shareIntent;
 
-        startActivity(Intent.createChooser(shareIntent, "Share using "));
-        activityMainBinding.next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMemeImage();
+            try {
+                FileOutputStream outputStream = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                outputStream.flush();
+                outputStream.close();
+
+                shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, memeUrl);
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-        });
+
+            startActivity(Intent.createChooser(shareIntent, "Share using "));
+            activityMainBinding.next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(checkInternetPermission()){
+                        getMemeImage();
+                    }else {
+                        Toast.makeText(MainActivity.this, R.string.On_internet, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+//        }else{
+//            Toast.makeText(this, R.string.On_internet, Toast.LENGTH_SHORT).show();
+//        }
+
     }
 
     public void getMemeImage() {
-        queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    memeUrl = response.getString("url");
-                    memeTitle = response.getString("title");
-                    loadImageIntoImageView(memeUrl);
-                } catch (JSONException jsonException) {
-                    jsonException.printStackTrace();
+        if(checkInternetPermission()) {
+            queue = Volley.newRequestQueue(this);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        memeUrl = response.getString("url");
+                        memeTitle = response.getString("title");
+                        loadImageIntoImageView(memeUrl);
+                    } catch (JSONException jsonException) {
+                        jsonException.printStackTrace();
+                    }
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        queue.add(jsonObjectRequest);
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+            queue.add(jsonObjectRequest);
+        }else {
+            Toast.makeText(this, R.string.On_internet, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void loadImageIntoImageView(String url) {
@@ -202,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode==PERMISSION_WRITE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -209,18 +239,29 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Permission Accepted", Toast.LENGTH_SHORT).show();
             new Downloading().execute(memeUrl);
         }
+
     }
 
+    public boolean checkInternetPermission(){
+        ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     public class Downloading extends AsyncTask<String, Integer, String> {
 
         @Override
         public void onPreExecute() {
             super .onPreExecute();
-            //show progressDialog untill image download
-            progressDialog.setMessage("Please wait");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+                //show progressDialog untill image download
+                progressDialog.setMessage("Please wait");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+
         }
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
