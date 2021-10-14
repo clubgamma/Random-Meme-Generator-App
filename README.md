@@ -33,13 +33,13 @@ You can download the app from this [link!](https://drive.google.com/file/d/1NtZ_
 ## App screenshots
 
 <div>
-    <img src="appScreenshots/0.jpg" width="350" height="700">
-    <img src="appScreenshots/1.jpg" width="350" height="700">
-    <img src="appScreenshots/2.jpg" width="350" height="700">
-    <img src="appScreenshots/3.jpg" width="350" height="700">
-    <img src="appScreenshots/4.jpg" width="350" height="700">
-    <img src="appScreenshots/5.jpg" width="350" height="700">
-    <img src="appScreenshots/6.jpg" width="350" height="700">
+    <img src="appScreenshots/0.jpg" width="150" height="300">
+    <img src="appScreenshots/1.jpg" width="150" height="300">
+    <img src="appScreenshots/2.jpg" width="150" height="300">
+    <img src="appScreenshots/3.jpg" width="150" height="300">
+    <img src="appScreenshots/4.jpg" width="150" height="300">
+    <img src="appScreenshots/5.jpg" width="150" height="300">
+    <img src="appScreenshots/6.jpg" width="150" height="300">
   
 </div>
   
