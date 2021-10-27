@@ -77,7 +77,7 @@
         android:clickable="true"
         android:tooltipText="Back"
         app:backgroundTint="@color/card_bg"
-        app:srcCompat="@drawable/ic_back"
+        android:src="@drawable/ic_back"
         app:tint="@color/text_color"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -94,5 +94,42 @@
         app:srcCompat="@drawable/download"
         app:tint="@color/text_color"
         tools:ignore="SpeakableTextPresentCheck" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:tooltipText="Back"
+            app:backgroundTint="@color/card_bg"
+            android:src="@drawable/ic_baseline_save_24"
+            app:tint="@color/text_color"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/moreBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:tooltipText="Back"
+            app:backgroundTint="@color/card_bg"
+            android:src="@drawable/ic_baseline_more_vert_24"
+            app:tint="@color/text_color"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+
+
 
 </RelativeLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483199882635",
+    "project_id": "memefy-4eb09",
+    "storage_bucket": "memefy-4eb09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483199882635:android:560219616a80d77ffe4b8e",
+        "android_client_info": {
+          "package_name": "io.github.clubgamma.randommemegenerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483199882635-kjm74usegfpqjc8jal8bbcs15uqf8pi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5lHp_pBf1lIFZ2oXDiEwy4KVVsu6k_3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483199882635-kjm74usegfpqjc8jal8bbcs15uqf8pi4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

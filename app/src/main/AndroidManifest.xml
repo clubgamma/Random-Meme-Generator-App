@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RandomMemeGenerator">
+        <activity android:name=".SavedMemes"></activity>
         <activity
             android:name=".StartActivity"
             android:exported="true"
@@ -24,7 +25,8 @@
             android:label="Meme Page"
             android:parentActivityName=".StartActivity"
             tools:ignore="MissingClass" />
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             tools:ignore="MissingClass">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
