@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -154,6 +155,18 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
+
+        });
+  // Implemented Swipe listener here --
+        img.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
+
+
+            public void onSwipeLeft(){
+
+//                Toast.makeText(MainActivity.this, "Swiped", Toast.LENGTH_SHORT).show();
+                getMemeImage();
+            }
+
 
         });
 
