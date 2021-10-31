@@ -74,6 +74,8 @@ public class StartActivity extends AppCompatActivity {
     }
     public void openActivity(android.view.View v){
         Toast.makeText(this, "Opening Meme Page. Enjoy!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Swipe left to Load meme :)", Toast.LENGTH_LONG).show();
+
         Intent intent= new Intent( this, MainActivity.class);
         startActivity(intent);
 

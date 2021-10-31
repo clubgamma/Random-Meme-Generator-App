@@ -80,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
     BitmapDrawable drawable;
     Bitmap bitmap;
     ImageView img;
-    Button shareBtn;
-    Button nextMeme;
+    FloatingActionButton shareBtn;
+//    Button nextMeme;
     ProgressBar proBar;
     FloatingActionButton downloadBtn,saveBtn,moreBtn;
     ProgressDialog progressDialog;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         // Define ShareButton and image object here
         shareBtn = findViewById(R.id.share);
         img = findViewById(R.id.imageView);
-        nextMeme = findViewById(R.id.next);
+//        nextMeme = findViewById(R.id.next);
         downloadBtn = findViewById(R.id.downloadBtn);
         saveBtn=findViewById(R.id.saveBtn);
         moreBtn=findViewById(R.id.moreBtn);
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         shareBtn.setOnClickListener(v -> shareImage());
-        nextMeme.setOnClickListener(v -> getMemeImage());
+
         downloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
   // Implemented Swipe listener here --
+
+        // Implemented Swipe listener here --
         img.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
 
 
@@ -238,19 +241,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             startActivity(Intent.createChooser(shareIntent, "Share using "));
-            activityMainBinding.next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(checkInternetPermission()){
-                        getMemeImage();
-                    }else {
-                        Toast.makeText(MainActivity.this, R.string.On_internet, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-//        }else{
-//            Toast.makeText(this, R.string.On_internet, Toast.LENGTH_SHORT).show();
-//        }
+
 
     }
 

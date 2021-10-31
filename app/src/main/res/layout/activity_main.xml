@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/LinearLayout02"
+
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="2dp"
@@ -27,46 +27,46 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible" />
-    <LinearLayout
-        android:id="@+id/LinearLayout02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/LinearLayout02"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true">-->
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/share"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="@string/share"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:backgroundTint="#77D970"
-            app:cornerRadius="15dp"
-            app:icon="@drawable/ic_share"
-            app:iconTint="@color/white" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/share"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:fontFamily="@font/poppins"-->
+<!--            android:paddingTop="8dp"-->
+<!--            android:paddingBottom="8dp"-->
+<!--            android:text="@string/share"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20sp"-->
+<!--            app:backgroundTint="#77D970"-->
+<!--            app:cornerRadius="15dp"-->
+<!--            app:icon="@drawable/ic_share"-->
+<!--            app:iconTint="@color/white" />-->
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="@string/next"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:backgroundTint="#3D56B2"
-            app:cornerRadius="15dp"
-            app:icon="@drawable/ic_next"
-            app:iconTint="@color/white" />
-    </LinearLayout>
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/next"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:fontFamily="@font/poppins"-->
+<!--            android:paddingTop="8dp"-->
+<!--            android:paddingBottom="8dp"-->
+<!--            android:text="@string/next"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20sp"-->
+<!--            app:backgroundTint="#3D56B2"-->
+<!--            app:cornerRadius="15dp"-->
+<!--            app:icon="@drawable/ic_next"-->
+<!--            app:iconTint="@color/white" />-->
+<!--    </LinearLayout>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/back"
@@ -82,12 +82,27 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:tooltipText="Back"
+        app:backgroundTint="@color/card_bg"
+        app:srcCompat="@drawable/ic_share"
+        app:tint="@color/text_color"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/downloadBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_alignParentRight="true"
-        android:layout_above="@id/LinearLayout02"
+        android:layout_alignParentBottom="true"
         android:clickable="true"
         android:tooltipText="Back"
         app:backgroundTint="@color/card_bg"
