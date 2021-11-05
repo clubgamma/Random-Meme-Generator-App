@@ -87,9 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:layout_alignParentRight="true"
         android:clickable="true"
         android:tooltipText="Back"
+        android:layout_toLeftOf="@id/saveMemeLayout"
         app:backgroundTint="@color/card_bg"
         app:srcCompat="@drawable/ic_share"
         app:tint="@color/text_color"
@@ -110,6 +110,7 @@
         app:tint="@color/text_color"
         tools:ignore="SpeakableTextPresentCheck" />
     <LinearLayout
+        android:id="@+id/saveMemeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
